@@ -29,7 +29,7 @@ public class OnMessageProcess implements ProcessMessagesService<Message, Session
             if (message.getRiddenBy() == null)
                 message.setRiddenBy(new TreeSet<>());
             message.getRiddenBy().add(message.getFrom());
-            storeService.updateList(message);
+            storeService.updateRiddenList(message);
         }
 
         // deleting
@@ -41,7 +41,7 @@ public class OnMessageProcess implements ProcessMessagesService<Message, Session
         // is in dialog
         if (message.getTo().size() > 2 & message.getIsInDialog() != null)
             if (message.getTo().contains(new User(message.getFrom())))
-                storeService.updateDialog(message);
+                storeService.updateInDialog(message);
 
         chatService.sendMessage(message, session);
 

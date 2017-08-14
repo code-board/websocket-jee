@@ -1,12 +1,8 @@
 package com.websocket.java.util.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import java.sql.Timestamp;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -17,10 +13,11 @@ import java.util.TreeSet;
 @Setter
 @ToString
 @EqualsAndHashCode
+@RequiredArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Message {
 
-    private long id;
+    private Long id;
     private String from;
     private String message;
     private TreeSet<User> to;
@@ -31,7 +28,7 @@ public class Message {
     private Set<Long> ridden;
     private Set<String> riddenBy;
     private Boolean isInDialog;
-    private Timestamp arrivedTime;
+    private String arrivedTime;
     private Set<Long> deleted;
 
 }

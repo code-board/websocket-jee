@@ -13,9 +13,9 @@ public interface StoreService<T, K, V, D> {
 
     D getDialog(D dialogName);
 
-    void updateDialog(T message);
+    void updateInDialog(T message);
 
-    void updateList(T message);
+    void updateRiddenList(T message);
 
     void deleteMessages(T message);
 }

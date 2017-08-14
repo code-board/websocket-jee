@@ -5,7 +5,10 @@ import com.websocket.java.service.storing.identity.PerDialogIdMessageGenerator;
 import com.websocket.java.util.model.Message;
 import com.websocket.java.util.model.User;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -64,7 +67,7 @@ public class InMemoryStore implements StoreService<Message, String, Map<TreeSet<
     }
 
     @Override
-    public void updateDialog(Message message) {
+    public void updateInDialog(Message message) {
         System.out.println("Update in dialog : " + message);
         dialogsMessages.keySet().forEach(setKey -> {
             if (setKey.equals(message.getTo()))
@@ -78,7 +81,7 @@ public class InMemoryStore implements StoreService<Message, String, Map<TreeSet<
     }
 
     @Override
-    public void updateList(Message message) {
+    public void updateRiddenList(Message message) {
         synchronized (dialogsMessages.get(message.getTo())) {
             for (int i = 0; i < dialogsMessages.get(message.getTo()).size(); i++) {
                 if (message.getRidden().contains(dialogsMessages.get(message.getTo()).get(i).getId()))
@@ -103,4 +106,5 @@ public class InMemoryStore implements StoreService<Message, String, Map<TreeSet<
                     }
             });
     }
+
 }
